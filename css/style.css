@@ -1,0 +1,35 @@
+/* Trees Image - Pexels: https://www.pexels.com/photo/photo-of-trees-in-forest-3801030/ */
+@import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed&display=swap");
+
+html {
+  box-sizing: border-box;
+}
+
+:root {
+  --column-1: #a2622d;
+  --column-2: #1b6161;
+  --column-3: #248224;
+  --column-4: #a22d22;
+}
+
+body {
+  margin: 0;
+  background: url("../img/cell-flat-otavio-regis.png");
+  background-size: cover;
+  background-position: 0% 120%;
+  background-attachment: fixed;
+  background-color: #02424b;
+  color: white;
+  font-family: Open Condensed, sans-serif;
+  overflow-y: hidden;
+}
+
+h1 {
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 5px black;
+}
+
+.main-title {
+  text-align: center;
+  font-size: 3rem;
+}
