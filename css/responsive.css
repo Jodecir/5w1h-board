@@ -11,15 +11,16 @@
     overflow-y: auto;
   }
 
-  .drag-container {
+  .container {
     margin: 0;
   }
 
-  .drag-list {
+  .list {
     display: block;
+    margin: 10px;
   }
 
-  .drag-column {
+  .column {
     margin: 10px;
   }
 }
