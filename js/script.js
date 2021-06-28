@@ -12,7 +12,7 @@ const whyList = document.getElementById('why-list');
 const howList = document.getElementById('how-list');
 
 // Items
-let updateOnLoad = false;
+let updatedOnLoad = false;
 
 // Initialize Arrays
 let whatListArray = [];
@@ -68,7 +68,7 @@ function createItemEl(columnEl, column, item, index) {
 // Update Columns in DOM - Reset HTML, Filter Array, Update localStorage
 function updateDOM() {
   // Check localStorage once
-  if ("!updateOnload") {
+  if (!updatedOnLoad) {
     getSavedColumns();
   }
   
@@ -78,27 +78,51 @@ function updateDOM() {
   });
   whoList.textContent = '';
   whoListArray.forEach((whoItem, index) => {
-    createItemEl(whoList, 0, whoItem, index) 
+    createItemEl(whoList, 1, whoItem, index) 
   }); 
   whereList.textContent = '';
   whereListArray.forEach((whereItem, index) => {
-    createItemEl(whereList, 0, whereItem, index) 
+    createItemEl(whereList, 2, whereItem, index) 
   }); 
   whenList.textContent = '';
   whenListArray.forEach((whenItem, index) => {
-    createItemEl(whenList, 0, whenItem, index) 
+    createItemEl(whenList, 3, whenItem, index) 
   }); 
   whyList.textContent = '';
   whyListArray.forEach((whyItem, index) => {
-    createItemEl(whyList, 0, whyItem, index) 
+    createItemEl(whyList, 4, whyItem, index) 
   }); 
   howList.textContent = '';
   howListArray.forEach((howItem, index) => {
-    createItemEl(howList, 0, howItem, index) 
-  }); 
+    createItemEl(howList, 5, howItem, index) 
+  });
 
-  // Run getSavedColumns only once, Update Local Storage
+  // Don't run more than once, Update Local Storage
+  updatedOnLoad = true;
+  updateSavedColumns();
+}
+// Add to Column List, Reset Textbox
+function addToColumn(column) {
+  const itemText = addItems[column].textContent;
+  const selectedArray = listArrays[column];
+  selectedArray.push(itemText);
+  addItems[column].textContent = '';
+  updateDOM(column);
+}
 
+// Show Add Item Input Box
+function showInputBox(column) {
+  addBtns[column].style.visibility = 'hidden';
+  saveItemBtns[column].style.display = 'flex';
+  addItemContainers[column].style.display = 'flex';
+}
+
+// Hide Item Input Box
+function hideInputBox(column) {
+  addBtns[column].style.visibility = 'visible';
+  saveItemBtns[column].style.display = 'none';
+  addItemContainers[column].style.display = 'none';
+  addToColumn(column);
 }
 
 //On Load
