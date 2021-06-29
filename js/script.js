@@ -51,6 +51,12 @@ function updateSavedColumns() {
   });
 }
 
+// Filter Array to remove empty values
+function filterArray(array) {
+  const filteredArray = array.filter(item => item !== null);
+  return filteredArray;
+}
+
 // Create DOM Elements for each list item
 function createItemEl(columnEl, column, item, index) {
   // List Item
@@ -75,26 +81,32 @@ function updateDOM() {
   whatListArray.forEach((whatItem, index) => {
     createItemEl(whatList, 0, whatItem, index) 
   });
+  whatListArray = filterArray(whatListArray);
   whoList.textContent = '';
   whoListArray.forEach((whoItem, index) => {
     createItemEl(whoList, 1, whoItem, index) 
-  }); 
+  });
+  whoListArray = filterArray(whoListArray);
   whereList.textContent = '';
   whereListArray.forEach((whereItem, index) => {
     createItemEl(whereList, 2, whereItem, index) 
-  }); 
+  });
+  whereListArray = filterArray(whereListArray);
   whenList.textContent = '';
   whenListArray.forEach((whenItem, index) => {
     createItemEl(whenList, 3, whenItem, index) 
-  }); 
+  });
+  whenListArray = filterArray(whenListArray);
   whyList.textContent = '';
   whyListArray.forEach((whyItem, index) => {
     createItemEl(whyList, 4, whyItem, index) 
   }); 
+  whyListArray = filterArray(whyListArray);
   howList.textContent = '';
   howListArray.forEach((howItem, index) => {
     createItemEl(howList, 5, howItem, index) 
   });
+  howListArray = filterArray(howListArray);
 
   // Don't run more than once, Update Local Storage
   updatedOnLoad = true;
