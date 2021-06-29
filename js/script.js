@@ -3,7 +3,7 @@ const saveItemBtns = document.querySelectorAll('.solid');
 const addItemContainers = document.querySelectorAll('.add-container');
 const addItems = document.querySelectorAll('.add-item');
 // Item Lists
-const itemLists = document.querySelectorAll('.item-list');
+const listColumns = document.querySelectorAll('.item-list');
 const whatList = document.getElementById('what-list');
 const whoList = document.getElementById('who-list');
 const whereList = document.getElementById('where-list');
@@ -53,14 +53,13 @@ function updateSavedColumns() {
 
 // Create DOM Elements for each list item
 function createItemEl(columnEl, column, item, index) {
-  console.log('columnEl:', columnEl);
-  console.log('column:', column);
-  console.log('item:', item);
-  console.log('index:', index);
   // List Item
   const listEl = document.createElement('li');
   listEl.classList.add('item');
   listEl.textContent = item;
+  listEl.id = index;
+  listEl.contentEditable = true;
+  listEl.setAttribute('onfocusout', `updateItem(${index}, ${column})`);
   // Append
   columnEl.appendChild(listEl);
 }
@@ -101,6 +100,7 @@ function updateDOM() {
   updatedOnLoad = true;
   updateSavedColumns();
 }
+
 // Add to Column List, Reset Textbox
 function addToColumn(column) {
   const itemText = addItems[column].textContent;
@@ -123,6 +123,18 @@ function hideInputBox(column) {
   saveItemBtns[column].style.display = 'none';
   addItemContainers[column].style.display = 'none';
   addToColumn(column);
+}
+
+// Update Item - Delete if necessary, or update Array value
+function updateItem(id, column) {
+  const selectedArray = listArrays[column];
+  const selectedColumn = listColumns[column].children;
+  if (!selectedColumn[id].textContent) {
+      delete selectedArray[id];
+  } else {
+    selectedArray[id] = selectedColumn[id].textContent;
+  }
+  updateDOM();
 }
 
 //On Load
