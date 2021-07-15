@@ -242,3 +242,25 @@ a {
 .background-3 {
   background-color: #028091;
 }
+
+/* FOOTER */
+footer {
+  font-size: 16pt;
+  background: black;
+  color: white;
+  text-align: center;
+  margin-top: 64px;
+}
+
+footer i {
+  padding: 15px;
+}
+
+footer i:hover {
+  transform: scale(1.15);
+}
+
+footer a {
+  text-decoration: none;
+  color: white;
+}
