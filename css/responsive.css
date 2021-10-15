@@ -27,4 +27,8 @@
   .background-toggles {
     right: 25px;
   }
+
+  .background-1 {
+    display: none;
+  }
 }
